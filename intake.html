@@ -21,10 +21,10 @@ body{font-family:var(--font-display);background:var(--off-white);color:var(--off
 .btn-primary:hover{background:var(--yellow);color:var(--black);}
 .btn-yellow{display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:var(--black);font-family:var(--font-display);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:14px 28px;border:none;cursor:pointer;transition:background .2s,transform .15s;}
 .btn-yellow:hover{background:var(--yellow-dim);}
-nav.site-nav{position:sticky;top:0;z-index:100;background:var(--off-white);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s ease;}
+nav.site-nav{position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s ease;}
 nav.site-nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.10);}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;max-width:1280px;margin:0 auto;}
-.nav-logo img{height:48px;width:auto;object-fit:contain;display:block;}
+.nav-logo img{height:68px;width:auto;object-fit:contain;display:block;}
 .nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none;}
 .nav-links a{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--grey-dark);transition:color .15s;position:relative;}
 .nav-links a:hover,.nav-links a.active{color:var(--black);}
@@ -36,13 +36,13 @@ nav.site-nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.10);}
 .nav-wa svg{width:20px;height:20px;fill:white;}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
 .hamburger span{display:block;width:24px;height:2px;background:var(--black);}
-.mobile-menu{display:flex;flex-direction:column;background:var(--off-white);border-top:1px solid rgba(0,0,0,.08);gap:1.5rem;overflow:hidden;max-height:0;padding:0 2rem;opacity:0;transition:max-height .35s ease,opacity .25s ease,padding .35s ease;}
+.mobile-menu{display:flex;flex-direction:column;background:#ffffff;border-top:1px solid rgba(0,0,0,.08);gap:1.5rem;overflow:hidden;max-height:0;padding:0 2rem;opacity:0;transition:max-height .35s ease,opacity .25s ease,padding .35s ease;}
 .mobile-menu.open{max-height:480px;opacity:1;padding:1.5rem 2rem;}
 .mobile-menu a{font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--off-black);}
 @media(max-width:768px){.nav-links,.nav-actions .btn-primary{display:none;}.hamburger{display:flex;}}
 footer.site-footer{background:var(--off-black);color:var(--grey-light);padding:3rem 0 1.5rem;}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:1.5rem;}
-.footer-brand img{height:40px;object-fit:contain;filter:brightness(0) invert(1);display:block;margin-bottom:1rem;}
+.footer-brand img{height:52px;width:auto;object-fit:contain;display:block;margin-bottom:1rem;background:#ffffff;padding:6px 10px;}
 .footer-brand p{font-size:.8rem;line-height:1.65;max-width:260px;opacity:.6;}
 .footer-col h4{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--white);margin-bottom:1rem;}
 .footer-col a{display:block;font-size:.8rem;color:var(--grey-light);text-decoration:none;margin-bottom:.6rem;opacity:.7;transition:opacity .15s;}
@@ -73,7 +73,7 @@ footer.site-footer{background:var(--off-black);color:var(--grey-light);padding:3
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
 .hours-info{padding:14px;background:rgba(255,255,255,.05);font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.6;margin-top:auto;}
 .hours-info strong{color:rgba(255,255,255,.7);}
-.intake-sidebar-img{width:100%;height:180px;overflow:hidden;margin-top:2rem;opacity:.4;filter:grayscale(1);}
+.intake-sidebar-img{width:100%;height:180px;overflow:hidden;margin-top:2rem;opacity:.75;}
 .intake-sidebar-img img{width:100%;height:100%;object-fit:cover;object-position:center;}
 
 .intake-form-wrap{padding:4rem 3rem;background:var(--off-white);}
