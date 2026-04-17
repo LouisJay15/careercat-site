@@ -124,10 +124,15 @@ footer.site-footer{background:var(--off-black);color:var(--grey-light);padding:3
 /* Submit */
 .submit-row{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;padding-top:.5rem;}
 .submit-row p{font-size:.75rem;color:var(--grey-mid);max-width:340px;line-height:1.6;}
-.submit-btn{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;background:var(--black);color:var(--white);font-family:var(--font-display);font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:18px 28px;border:none;cursor:pointer;transition:background .2s,transform .15s;min-width:260px;}
+.submit-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.submit-btn{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;background:var(--black);color:var(--white);font-family:var(--font-display);font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:18px 28px;border:none;cursor:pointer;transition:background .2s,transform .15s;min-width:220px;}
 .submit-btn:hover{background:var(--yellow);color:var(--black);}
 .submit-btn:active{transform:scale(.97);}
+.submit-btn:disabled{opacity:.55;cursor:not-allowed;transform:none;}
 .submit-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;}
+.submit-btn.wa-btn{background:#25D366;color:#fff;}
+.submit-btn.wa-btn:hover{background:#1da851;color:#fff;}
+.submit-btn.wa-btn svg{fill:currentColor;stroke:none;}
 
 /* Success state */
 .success-msg{display:none;background:var(--black);color:var(--white);padding:2.5rem;text-align:center;margin-top:2rem;}
@@ -311,11 +316,17 @@ footer.site-footer{background:var(--off-black);color:var(--grey-light);padding:3
 
       <!-- Submit -->
       <div class="submit-row fade-up">
-        <p>By submitting this form you confirm that all information provided is accurate and that you agree to our terms.</p>
-        <button type="submit" class="submit-btn">
-          Submit Intake Form
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
+        <p>By submitting you confirm all information is accurate and you agree to our terms. Your CV will be attached when sending via email.</p>
+        <div class="submit-btns">
+          <button type="button" id="btnEmail" class="submit-btn">
+            Submit via Email
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </button>
+          <button type="button" id="btnWA" class="submit-btn wa-btn">
+            Send via WhatsApp
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.989.574 3.842 1.563 5.408L2 22l4.703-1.535A9.956 9.956 0 0011.999 22C17.522 22 22 17.523 22 12c0-5.522-4.478-10-10.001-10z"/></svg>
+          </button>
+        </div>
       </div>
 
       <div class="success-msg" id="successMsg">
@@ -338,15 +349,14 @@ footer.site-footer{background:var(--off-black);color:var(--grey-light);padding:3
     <a href="https://wa.me/27689145518" target="_blank" class="footer-wa-float"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Chat on WhatsApp</a></div>
   </div></footer>
 <script>
+// Nav
 const ham=document.getElementById('hamburger'),mob=document.getElementById('mobileMenu');
 if(ham)ham.addEventListener('click',()=>mob.classList.toggle('open'));
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.12});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 window.addEventListener('scroll',()=>{const n=document.querySelector('nav.site-nav');if(n)n.classList.toggle('scrolled',window.scrollY>50);},{passive:true});
-</script>
-</body>
-</html><script>
-// Drag and drop
+
+// File upload drag & drop
 const zone=document.getElementById('uploadZone'),fileInput=document.getElementById('cvFile'),fileName=document.getElementById('file-name');
 if(zone){
   zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('drag');});
@@ -356,44 +366,82 @@ if(zone){
 }
 function showFile(f){fileName.textContent='✓ '+f.name;fileName.style.display='block';}
 
-// Form submit
-document.getElementById('intakeForm').addEventListener('submit',function(e){
-  e.preventDefault();
-  const required=this.querySelectorAll('[required]');
+// Validation
+function validateForm(){
+  const form=document.getElementById('intakeForm');
   let ok=true;
-  required.forEach(el=>{
+  form.querySelectorAll('[required]').forEach(el=>{
     if(el.type==='checkbox'&&!el.checked){el.parentElement.style.outline='2px solid red';ok=false;}
     else if(el.type!=='checkbox'&&!el.value.trim()){el.style.borderBottomColor='red';ok=false;}
     else{el.style.borderBottomColor='';el.parentElement.style.outline='';}
   });
-  if(!ok){alert('Please complete all required fields.');return;}
-  // Compose mailto
-  const d=new FormData(this);
-  const fname=d.get('fname')||'',lname=d.get('lname')||'',email=d.get('email')||'',phone=d.get('phone')||'';
-  const status=d.get('status')||'',exp=d.get('exp_level')||'',industry=d.get('industry')||'',title=d.get('job_title')||'',target=d.get('target_role')||'';
+  if(!ok)alert('Please complete all required fields marked with *.');
+  return ok;
+}
+
+function buildSummary(){
+  const d=new FormData(document.getElementById('intakeForm'));
+  const fname=d.get('fname')||'',lname=d.get('lname')||'';
+  const email=d.get('email')||'',phone=d.get('phone')||'';
+  const city=d.get('city')||'',pref=d.get('pref_contact')||'';
+  const status=d.get('status')||'',exp=d.get('exp_level')||'';
+  const industry=d.get('industry')||'',title=d.get('job_title')||'',target=d.get('target_role')||'';
   const bg=d.get('background')||'',ch=d.get('challenges')||'';
   const svcs=d.getAll('services').join(', ')||'None selected';
-  const body=`New Career Cat Intake
+  return {fname,lname,email,phone,city,pref,status,exp,industry,title,target,bg,ch,svcs};
+}
 
-NAME: ${fname} ${lname}
-EMAIL: ${email}
-PHONE: ${phone}
-
-STATUS: ${status}
-EXPERIENCE: ${exp}
-INDUSTRY: ${industry}
-CURRENT TITLE: ${title}
-TARGET ROLE: ${target}
-
-SERVICES REQUESTED: ${svcs}
-
-BACKGROUND:
-${bg}
-
-CHALLENGES:
-${ch}`;
-  window.location.href='mailto:hello@careercat.co.za?subject=Intake Form – '+encodeURIComponent(fname+' '+lname)+'&body='+encodeURIComponent(body);
+function showSuccess(){
   document.getElementById('successMsg').style.display='block';
-  this.querySelectorAll('button[type=submit]').forEach(b=>b.disabled=true);
+  document.getElementById('btnEmail').disabled=true;
+  document.getElementById('btnWA').disabled=true;
+  document.getElementById('successMsg').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// ── Email via Formspree ────────────────────────────────────────────────────
+// SETUP: Sign up free at https://formspree.io → create a form targeting
+// hello@careercat.co.za → paste the form ID below (looks like "xrgjqkwb").
+const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
+
+document.getElementById('btnEmail').addEventListener('click',async function(){
+  if(!validateForm())return;
+  const btn=this;
+  const origHTML=btn.innerHTML;
+
+  if(FORMSPREE_ID==='YOUR_FORMSPREE_ID'){
+    // Fallback: open native email client with form data pre-filled
+    const s=buildSummary();
+    const body=`New Career Cat Intake\n\nNAME: ${s.fname} ${s.lname}\nEMAIL: ${s.email}\nPHONE: ${s.phone}\nCITY: ${s.city}\nPREFERRED CONTACT: ${s.pref}\n\nSTATUS: ${s.status}\nEXPERIENCE: ${s.exp}\nINDUSTRY: ${s.industry}\nCURRENT TITLE: ${s.title}\nTARGET ROLE: ${s.target}\n\nSERVICES REQUESTED: ${s.svcs}\n\nBACKGROUND:\n${s.bg}\n\nCHALLENGES:\n${s.ch}\n\n(Please attach your CV to this email before sending.)`;
+    window.location.href='mailto:hello@careercat.co.za?subject='+encodeURIComponent('Intake Form – '+s.fname+' '+s.lname)+'&body='+encodeURIComponent(body);
+    showSuccess();
+    return;
+  }
+
+  btn.disabled=true;
+  btn.innerHTML='Sending… <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;"><line x1="5" y1="12" x2="19" y2="12"/></svg>';
+  try{
+    const formData=new FormData(document.getElementById('intakeForm'));
+    const res=await fetch('https://formspree.io/f/'+FORMSPREE_ID,{method:'POST',body:formData,headers:{'Accept':'application/json'}});
+    if(res.ok){
+      showSuccess();
+    }else{
+      alert('Could not send. Please try WhatsApp or email us directly at hello@careercat.co.za');
+      btn.disabled=false;btn.innerHTML=origHTML;
+    }
+  }catch(err){
+    alert('Could not send. Please try WhatsApp or email us directly at hello@careercat.co.za');
+    btn.disabled=false;btn.innerHTML=origHTML;
+  }
+});
+
+// ── WhatsApp ───────────────────────────────────────────────────────────────
+document.getElementById('btnWA').addEventListener('click',function(){
+  if(!validateForm())return;
+  const s=buildSummary();
+  const msg=`*New Career Cat Intake*\n\n*Name:* ${s.fname} ${s.lname}\n*Email:* ${s.email}\n*Phone:* ${s.phone}\n*City:* ${s.city}\n\n*Career Status:* ${s.status}\n*Experience:* ${s.exp}\n*Industry:* ${s.industry}\n*Current Title:* ${s.title}\n*Target Role:* ${s.target}\n\n*Services Requested:* ${s.svcs}\n\n*Background:*\n${s.bg}\n\n*Challenges:*\n${s.ch}\n\n_(Please also send your CV as a file in this chat if you have one.)_`;
+  window.open('https://wa.me/27689145518?text='+encodeURIComponent(msg),'_blank');
+  showSuccess();
 });
 </script>
+</body>
+</html>
