@@ -408,15 +408,6 @@ document.getElementById('btnEmail').addEventListener('click',async function(){
   const btn=this;
   const origHTML=btn.innerHTML;
 
-  if(FORMSPREE_ID==='YOUR_FORMSPREE_ID'){
-    // Fallback: open native email client with form data pre-filled
-    const s=buildSummary();
-    const body=`New Career Cat Intake\n\nNAME: ${s.fname} ${s.lname}\nEMAIL: ${s.email}\nPHONE: ${s.phone}\nCITY: ${s.city}\nPREFERRED CONTACT: ${s.pref}\n\nSTATUS: ${s.status}\nEXPERIENCE: ${s.exp}\nINDUSTRY: ${s.industry}\nCURRENT TITLE: ${s.title}\nTARGET ROLE: ${s.target}\n\nSERVICES REQUESTED: ${s.svcs}\n\nBACKGROUND:\n${s.bg}\n\nCHALLENGES:\n${s.ch}\n\n(Please attach your CV to this email before sending.)`;
-    window.location.href='mailto:hello@careercat.co.za?subject='+encodeURIComponent('Intake Form – '+s.fname+' '+s.lname)+'&body='+encodeURIComponent(body);
-    showSuccess();
-    return;
-  }
-
   btn.disabled=true;
   btn.innerHTML='Sending… <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;"><line x1="5" y1="12" x2="19" y2="12"/></svg>';
   try{
