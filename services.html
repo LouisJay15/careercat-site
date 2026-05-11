@@ -48,9 +48,10 @@ nav.site-nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.10);}
 .mobile-menu.open{max-height:480px;opacity:1;padding:1.5rem 2rem;}
 .mobile-menu a{font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--off-black);}
 @media(max-width:768px){.nav-links,.nav-actions .btn-primary{display:none;}.hamburger{display:flex;}}
-footer.site-footer{background:var(--off-black);color:var(--grey-light);padding:3rem 0 1.5rem;}
+footer.site-footer,.footer-brand,.footer-content{background-color:#000 !important;color:#e6e6e6;}
+footer.site-footer{padding:3rem 0 1.5rem;}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:1.5rem;}
-.footer-brand{display:block;padding:0;margin:0;background-color:#000;width:100%;height:auto;}.footer-brand img{display:block;padding:0;margin:0;background-color:#000;width:100%;height:auto;object-fit:cover;clip-path:inset(0);border:none;}
+.footer-brand{display:block;padding:0;margin:0;}.footer-logo{display:block;width:120px;height:auto;margin:0 auto;padding:0;object-fit:contain;}
 .footer-brand p{font-size:.8rem;line-height:1.65;max-width:260px;opacity:.6;}
 .footer-col h4{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--white);margin-bottom:1rem;}
 .footer-col a{display:block;font-size:.8rem;color:var(--grey-light);text-decoration:none;margin-bottom:.6rem;opacity:.7;transition:opacity .15s;}
@@ -332,7 +333,7 @@ footer.site-footer{background:var(--off-black);color:var(--grey-light);padding:3
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand"><img src="brand_assets/logo-footer.png" alt="CareerCat Footer Logo" class="h-12 w-auto opacity-90"><p>Professional career services for South African jobseekers and career changers. Built on 12+ years of industry insight.</p></div>
+      <div class="footer-brand"><img src="brand_assets/logo-footer.png" alt="CareerCat Footer Logo" class="footer-logo"><p>Professional career services for South African jobseekers and career changers. Built on 12+ years of industry insight.</p></div>
       <div class="footer-col"><h4>Services</h4><a href="services.html#cv">CV Writing</a><a href="services.html#linkedin">LinkedIn</a><a href="services.html#cover">Cover Letters</a><a href="services.html#coaching">Coaching</a><a href="services.html#proofing">Proofreading</a></div>
       <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="intake.html">Get Started</a><a href="https://wa.me/27689145518" target="_blank">WhatsApp</a><a href="mailto:hello@careercat.co.za">Email</a></div>
       <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">POPIA Compliance</a></div>

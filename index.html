@@ -765,9 +765,13 @@
   .cta-banner .btn-primary { font-size: 0.85rem; padding: 16px 36px; }
 
   /* ===== FOOTER ===== */
+  footer,
+  .footer-brand,
+  .footer-content {
+    background-color: #000 !important;
+    color: #e6e6e6;
+  }
   footer {
-    background: var(--off-black);
-    color: var(--grey-light);
     padding: 3rem 0 1.5rem;
   }
   .footer-grid {
@@ -782,20 +786,14 @@
     display: block;
     padding: 0;
     margin: 0;
-    background-color: #000;
-    width: 100%;
-    height: auto;
   }
-  .footer-brand img {
+  .footer-logo {
     display: block;
-    padding: 0;
-    margin: 0;
-    background-color: #000;
-    width: 100%;
+    width: 120px;
     height: auto;
-    object-fit: cover;
-    clip-path: inset(0);
-    border: none;
+    margin: 0 auto;
+    padding: 0;
+    object-fit: contain;
   }
   .footer-brand p { font-size: 0.8rem; line-height: 1.65; max-width: 260px; opacity: 0.6; }
   .footer-col h4 {
@@ -1320,7 +1318,7 @@
 <footer>
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand"><img src="brand_assets/logo-footer.png" alt="CareerCat Footer Logo" class="h-12 w-auto opacity-90">
+      <div class="footer-brand"><img src="brand_assets/logo-footer.png" alt="CareerCat Footer Logo" class="footer-logo">
         <p>Professional career services for South African jobseekers and career changers. Built on 12+ years of industry insight.</p>
       </div>
       <div class="footer-col">
