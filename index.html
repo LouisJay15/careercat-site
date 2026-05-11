@@ -765,9 +765,13 @@
   .cta-banner .btn-primary { font-size: 0.85rem; padding: 16px 36px; }
 
   /* ===== FOOTER ===== */
+  footer,
+  .footer-brand,
+  .footer-content {
+    background-color: #000 !important;
+    color: #e6e6e6;
+  }
   footer {
-    background: var(--off-black);
-    color: var(--grey-light);
     padding: 3rem 0 1.5rem;
   }
   .footer-grid {
@@ -782,16 +786,14 @@
     display: block;
     padding: 0;
     margin: 0;
-    background-color: #000;
   }
   .footer-logo {
     display: block;
-    width: 100%;
+    width: 120px;
     height: auto;
+    margin: 0 auto;
     padding: 0;
-    margin: 0;
-    object-fit: cover;
-    background-color: #000;
+    object-fit: contain;
   }
   .footer-brand p { font-size: 0.8rem; line-height: 1.65; max-width: 260px; opacity: 0.6; }
   .footer-col h4 {
