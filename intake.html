@@ -149,7 +149,21 @@ footer.site-footer{padding:3rem 0 1.5rem;}
   .form-row.triple{grid-template-columns:1fr;}
   .service-grid{grid-template-columns:1fr;}
 }
+
+/* Form states (Step 1) */
+[hidden]{display:none!important;}
+.error-msg{background:#fdecea;border-left:4px solid #b3261e;padding:1rem 1.25rem;margin:0 0 1.5rem;color:#5f1410;font-size:.85rem;line-height:1.6;}
+.error-msg a{color:#5f1410;font-weight:700;}
+.upload-zone:focus-visible{outline:2px solid var(--black);outline-offset:2px;}
+.upload-fallback{background:var(--white);border:2px dashed var(--surface-high);padding:1.5rem;text-align:center;font-size:.85rem;color:var(--grey-dark);line-height:1.6;}
+.upload-fallback a{color:var(--black);font-weight:600;}
+#file-name.is-error{color:#b3261e;font-weight:600;}
+.turnstile-box{margin-bottom:1.5rem;min-height:65px;}
+.submit-btn:disabled{opacity:.6;cursor:progress;}
+.success-msg:focus{outline:none;}
 </style>
+<script src="assets/js/config.js" defer></script>
+<script src="assets/js/intake.js" defer></script>
 </head>
 <body>
 <a href="https://wa.me/27689145518" target="_blank" class="float-wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
@@ -192,7 +206,9 @@ footer.site-footer{padding:3rem 0 1.5rem;}
 
   <!-- Form -->
   <main class="intake-form-wrap">
-    <form id="intakeForm" novalidate>
+    <form id="intakeForm" method="post" novalidate>
+      <noscript><p class="error-msg">This form needs JavaScript to send. Please email your details and CV to hello@careercat.co.za or WhatsApp +27 68 914 5518.</p></noscript>
+      <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
 
       <!-- 01 Personal -->
       <div class="form-section fade-up">
@@ -284,13 +300,14 @@ footer.site-footer{padding:3rem 0 1.5rem;}
       <div class="form-section fade-up">
         <div class="form-section-title" data-num="05">Upload Your Current CV (Optional)</div>
         <p style="font-size:.82rem;color:var(--grey-dark);margin-bottom:1.25rem;line-height:1.6;">If you have an existing CV, uploading it helps us prepare before our first conversation. PDF or Word, max 5MB.</p>
-        <div class="upload-zone" id="uploadZone" onclick="document.getElementById('cvFile').click()">
+        <div class="upload-zone" id="uploadZone" role="button" tabindex="0" aria-label="Upload your CV: PDF, DOC or DOCX, max 5 MB">
           <svg viewBox="0 0 24 24"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
           <p>Click to upload or drag &amp; drop</p>
-          <span>PDF or DOCX · Max 5MB</span>
-          <input type="file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx">
+          <span>PDF, DOC or DOCX · max 5 MB</span>
+          <input type="file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
         </div>
-        <p id="file-name"></p>
+        <p id="file-name" aria-live="polite"></p>
+        <p class="upload-fallback" id="uploadFallback" hidden>Please email your CV to <a href="mailto:hello@careercat.co.za">hello@careercat.co.za</a> or WhatsApp it to <a href="https://wa.me/27689145518" target="_blank" rel="noopener">+27 68 914 5518</a>.</p>
       </div>
 
       <!-- 06 Consent -->
@@ -312,16 +329,20 @@ footer.site-footer{padding:3rem 0 1.5rem;}
         </div>
       </div>
 
+      <!-- Bot check (Cloudflare Turnstile, rendered by assets/js/intake.js) -->
+      <div class="turnstile-box" id="turnstileBox"></div>
+      <div id="errorMsg" class="error-msg" role="alert" aria-live="assertive" hidden></div>
+
       <!-- Submit -->
       <div class="submit-row fade-up">
         <p>By submitting this form you confirm that all information provided is accurate and that you agree to our terms.</p>
         <button type="submit" class="submit-btn">
-          Submit Intake Form
+          <span class="submit-label">Submit Intake Form</span>
           <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
       </div>
 
-      <div class="success-msg" id="successMsg">
+      <div class="success-msg" id="successMsg" aria-live="polite" tabindex="-1">
         <h3>We've got your intake!</h3>
         <p>Thank you for reaching out. We'll review your details and be in touch within one business day.<br><br>In the meantime, feel free to WhatsApp us on <strong>+27 68 914 5518</strong> if you have any questions.</p>
       </div>
@@ -340,63 +361,5 @@ footer.site-footer{padding:3rem 0 1.5rem;}
     <div class="footer-bottom"><p>© 2025 The Career Cat · careercat.co.za · All rights reserved.</p>
     <a href="https://wa.me/27689145518" target="_blank" class="footer-wa-float"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Chat on WhatsApp</a></div>
   </div></footer>
-<script>
-const ham=document.getElementById('hamburger'),mob=document.getElementById('mobileMenu');
-if(ham)ham.addEventListener('click',()=>mob.classList.toggle('open'));
-const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.12});
-document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
-window.addEventListener('scroll',()=>{const n=document.querySelector('nav.site-nav');if(n)n.classList.toggle('scrolled',window.scrollY>50);},{passive:true});
-</script>
 </body>
-</html><script>
-// Drag and drop
-const zone=document.getElementById('uploadZone'),fileInput=document.getElementById('cvFile'),fileName=document.getElementById('file-name');
-if(zone){
-  zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('drag');});
-  zone.addEventListener('dragleave',()=>zone.classList.remove('drag'));
-  zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('drag');const f=e.dataTransfer.files[0];if(f){fileInput.files=e.dataTransfer.files;showFile(f);}});
-  fileInput.addEventListener('change',()=>{if(fileInput.files[0])showFile(fileInput.files[0]);});
-}
-function showFile(f){fileName.textContent='✓ '+f.name;fileName.style.display='block';}
-
-// Form submit
-document.getElementById('intakeForm').addEventListener('submit',function(e){
-  e.preventDefault();
-  const required=this.querySelectorAll('[required]');
-  let ok=true;
-  required.forEach(el=>{
-    if(el.type==='checkbox'&&!el.checked){el.parentElement.style.outline='2px solid red';ok=false;}
-    else if(el.type!=='checkbox'&&!el.value.trim()){el.style.borderBottomColor='red';ok=false;}
-    else{el.style.borderBottomColor='';el.parentElement.style.outline='';}
-  });
-  if(!ok){alert('Please complete all required fields.');return;}
-  // Compose mailto
-  const d=new FormData(this);
-  const fname=d.get('fname')||'',lname=d.get('lname')||'',email=d.get('email')||'',phone=d.get('phone')||'';
-  const status=d.get('status')||'',exp=d.get('exp_level')||'',industry=d.get('industry')||'',title=d.get('job_title')||'',target=d.get('target_role')||'';
-  const bg=d.get('background')||'',ch=d.get('challenges')||'';
-  const svcs=d.getAll('services').join(', ')||'None selected';
-  const body=`New Career Cat Intake
-
-NAME: ${fname} ${lname}
-EMAIL: ${email}
-PHONE: ${phone}
-
-STATUS: ${status}
-EXPERIENCE: ${exp}
-INDUSTRY: ${industry}
-CURRENT TITLE: ${title}
-TARGET ROLE: ${target}
-
-SERVICES REQUESTED: ${svcs}
-
-BACKGROUND:
-${bg}
-
-CHALLENGES:
-${ch}`;
-  window.location.href='mailto:hello@careercat.co.za?subject=Intake Form – '+encodeURIComponent(fname+' '+lname)+'&body='+encodeURIComponent(body);
-  document.getElementById('successMsg').style.display='block';
-  this.querySelectorAll('button[type=submit]').forEach(b=>b.disabled=true);
-});
-</script>
+</html>
